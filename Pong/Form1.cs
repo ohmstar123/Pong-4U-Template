@@ -124,6 +124,14 @@ namespace Pong
             player1Score = 0;
             player2Score = 0;
             gameWinScore = 3;
+
+            gameUpdateLoop.Enabled = true;
+
+            playAgainButton.Visible = false;
+            exitButton.Visible = false;
+            startLabel.Visible = false;
+
+
         }
 
         private void exitButton_Click(object sender, EventArgs e)
