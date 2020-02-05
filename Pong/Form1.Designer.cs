@@ -81,6 +81,8 @@
             this.playAgainButton.TabIndex = 2;
             this.playAgainButton.Text = "Play Again?";
             this.playAgainButton.UseVisualStyleBackColor = true;
+            this.playAgainButton.Visible = false;
+            this.playAgainButton.Click += new System.EventHandler(this.playAgainButton_Click);
             // 
             // exitButton
             // 
@@ -94,6 +96,8 @@
             this.exitButton.TabIndex = 3;
             this.exitButton.Text = "Exit";
             this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.Visible = false;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
             // Form1
             // 

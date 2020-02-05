@@ -42,7 +42,7 @@ namespace Pong
         //ball directions, speed, and rectangle
         Boolean ballMoveRight = true;
         Boolean ballMoveDown = true;
-        const int BALL_SPEED = 4;
+        int BALL_SPEED = 3;
         Rectangle ball;
 
         //paddle speeds and rectangles
@@ -115,6 +115,22 @@ namespace Pong
                     break;
             }
         }
+
+        private void playAgainButton_Click(object sender, EventArgs e)
+        {
+            ballMoveRight = true;
+            ballMoveDown = true;
+            BALL_SPEED = 3;
+            player1Score = 0;
+            player2Score = 0;
+            gameWinScore = 3;
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
 
         /// <summary>
         /// sets the ball and paddle positions for game start
@@ -324,12 +340,19 @@ namespace Pong
                 p1.Y = this.Height / 2 - p1.Height / 2;
                 p2.Y = this.Height / 2 - p2.Height / 2;
 
-                if (player2Score == 3)
+                if (player2Score == gameWinScore)
                 {
                     // TODO use if statement to check to see if player 2 has won the game. If true run 
                     scoreLabel.Visible = false;
                     startLabel.Text = "Player 2 won";
                     startLabel.Visible = true;
+
+                    gameUpdateLoop.Enabled = false;
+
+                    playAgainButton.Visible = true;
+                    exitButton.Visible = true;
+
+
                 }
                 else
                 {
@@ -361,11 +384,17 @@ namespace Pong
                 p2.Y = this.Height / 2 - p2.Height / 2;
 
 
-                if (player1Score == 3)
+                if (player1Score == gameWinScore)
                 {
                     scoreLabel.Visible = false;
                     startLabel.Text = "Player 1 won";
                     startLabel.Visible = true;
+
+                    gameUpdateLoop.Enabled = false;
+
+                    playAgainButton.Visible = true;
+                    exitButton.Visible = true;
+
                 }
                 else
                 {
@@ -406,6 +435,20 @@ namespace Pong
 
             // TODO draw ball using FillRectangle
             e.Graphics.FillRectangle(drawBrush, ball);
+
+            //clear screen when someone wins
+            if (player1Score == 3 || player2Score == 3)
+            {
+                e.Graphics.Clear(Color.Black);
+            }
+            else if (player1Score < 3 || player2Score < 3)
+            {
+                e.Graphics.FillRectangle(drawBrush, p1);
+                e.Graphics.FillRectangle(drawBrush, p2);
+
+                e.Graphics.FillRectangle(drawBrush, ball);
+            }
+
 
             // TODO draw scores to the screen using DrawString
         }
