@@ -42,7 +42,7 @@ namespace Pong
         //ball directions, speed, and rectangle
         Boolean ballMoveRight = true;
         Boolean ballMoveDown = true;
-        int BALL_SPEED = 3;
+        int BALL_SPEED = 2;
         Rectangle ball;
 
         //paddle speeds and rectangles
@@ -120,7 +120,7 @@ namespace Pong
         {
             ballMoveRight = true;
             ballMoveDown = true;
-            BALL_SPEED = 3;
+            BALL_SPEED = 2;
             player1Score = 0;
             player2Score = 0;
             gameWinScore = 3;
@@ -131,7 +131,7 @@ namespace Pong
             exitButton.Visible = false;
             startLabel.Visible = false;
 
-
+            this.Focus();
         }
 
         private void exitButton_Click(object sender, EventArgs e)
@@ -292,6 +292,7 @@ namespace Pong
                 // --- use ballMoveRight boolean to change direction
             ballMoveDown = true;
             ballMoveRight = false;
+                BALL_SPEED++;
             }
             else if (p2.IntersectsWith(ball) && ballMoveDown == false)
             {
@@ -299,6 +300,7 @@ namespace Pong
                 ballMoveRight = false;
 
                 collisionPop.Play();
+                BALL_SPEED++;
             }
 
             // TODO create if statment that checks p2 collides with ball and if it does
@@ -309,6 +311,7 @@ namespace Pong
                 // --- use ballMoveRight boolean to change direction
                 ballMoveDown = true;
                 ballMoveRight = true;
+                BALL_SPEED++;
             }
             else if (p1.IntersectsWith(ball) && ballMoveDown == false)
             {
@@ -316,6 +319,7 @@ namespace Pong
                 ballMoveRight = true;
 
                 collisionPop.Play();
+                BALL_SPEED++;
             }
 
 
@@ -347,6 +351,8 @@ namespace Pong
 
                 p1.Y = this.Height / 2 - p1.Height / 2;
                 p2.Y = this.Height / 2 - p2.Height / 2;
+
+                BALL_SPEED = 2;
 
                 if (player2Score == gameWinScore)
                 {
@@ -390,6 +396,8 @@ namespace Pong
 
                 p1.Y = this.Height / 2 - p1.Height / 2;
                 p2.Y = this.Height / 2 - p2.Height / 2;
+
+                BALL_SPEED = 2;
 
 
                 if (player1Score == gameWinScore)
